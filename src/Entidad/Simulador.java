@@ -2,6 +2,7 @@ package Entidad;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.TreeSet;
 
 public class Simulador {
@@ -32,7 +33,24 @@ public class Simulador {
      * @return
      */
     public HashSet<Dni> generarListaDni() {
-
+        HashSet<Dni> dnis = new HashSet<>();
+        Random random = new Random();
+        String posiblesTiposDni = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int numerosPosiblesDni = 999_999_999;
+        int posicionRandomTipo = 0;
+        
+        String tipoSeleccionado = "";
+        int numeroDni = 0;
+        
+        while(dnis.size() != cantidadAlumnos){
+            posicionRandomTipo = random.nextInt(posiblesTiposDni.length());
+            tipoSeleccionado = posiblesTiposDni.substring(posicionRandomTipo, posicionRandomTipo+1);
+            numeroDni = random.nextInt(numerosPosiblesDni)+1;
+            
+            dnis.add(new Dni(numeroDni, tipoSeleccionado));
+        }
+        
+        return dnis;
     }
 
     /**

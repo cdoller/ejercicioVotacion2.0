@@ -35,4 +35,9 @@ public class Dni {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Dni=" + numero + "-" + tipo;
+    }
+
 }
