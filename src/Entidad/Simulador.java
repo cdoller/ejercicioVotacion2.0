@@ -1,6 +1,8 @@
 package Entidad;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.TreeSet;
 
@@ -22,7 +24,29 @@ public class Simulador {
      * @return
      */
     public ArrayList<String> generarListaNombres() {
-        return new ArrayList();
+        
+        ArrayList<String> listaNombres = new ArrayList<>(Arrays.asList("Manolo","Nikita","Takeshi","Vladimir","Martha","Aristoteles","Hypatia","Deborah","Kim"));
+        ArrayList<String> listaApellidos = new ArrayList<>(Arrays.asList("Putin","Nakamura","Jimenez","Mussolini","Khan","Hotpants","Coldpants","Solis","Zheng"));
+        ArrayList<String> nombresAlumnos=new ArrayList<>();
+        String nombre="";
+        String apellido="";
+        
+        
+        Collections.shuffle((listaNombres));
+        Collections.shuffle(listaApellidos);
+        
+        for (String lista : listaNombres) {
+            nombre=lista;
+            for (String apellidoAlumno : listaApellidos) {
+                if(apellido!=apellidoAlumno){
+                     apellido=apellidoAlumno;
+                }
+                nombresAlumnos.add(nombre+" "+apellido);
+               
+                
+            }
+        }
+        return nombresAlumnos;
     }
 
     /**
