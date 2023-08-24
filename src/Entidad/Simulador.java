@@ -22,7 +22,7 @@ public class Simulador {
      * @return
      */
     public ArrayList<String> generarListaNombres() {
-
+        return new ArrayList();
     }
 
     /**
