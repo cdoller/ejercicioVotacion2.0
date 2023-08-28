@@ -2,9 +2,14 @@ package Entidad;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
+import java.util.Scanner;
 import java.util.TreeSet;
 
 public class Simulador {
+    Random random = new Random();
+    Scanner leer = new Scanner(System.in);
+    
 
     private int cantidadAlumnos;
 
@@ -13,6 +18,9 @@ public class Simulador {
     }
 
     public int getCantidadAlumnos() {
+        System.out.println("Cuantos alumnos conforman el grupo?");
+        int cantidadAlumnos = leer.nextInt();
+        leer.nextLine();
         return cantidadAlumnos;
     }
 
@@ -21,8 +29,72 @@ public class Simulador {
      *
      * @return
      */
-    public ArrayList<String> generarListaNombres() {
-        return new ArrayList();
+    public ArrayList<String> generarListaNombres(int num) {
+        ArrayList listaNombres = new ArrayList();
+        String[] nombre = new String[20];
+        String[] apellido = new String [20];
+        
+        nombre[0]="Lorena";
+        nombre[1]="Malu";
+        nombre[2]="Juan";
+        nombre[3]="Andrés";
+        nombre[4]="Pepe";
+        nombre[5]="Ana";
+        nombre[6]="Natalia";
+        nombre[7]="Abril";
+        nombre[8]="Carlos";
+        nombre[9]="Franco";
+        nombre[10]="Pablo";
+        nombre[11]="Edna";
+        nombre[12]="Lucia";
+        nombre[13]="Edgar";
+        nombre[14]="Samuel";
+        nombre[15]="Cata";
+        nombre[16]="Juanes";
+        nombre[17]="Santiago";
+        nombre[18]="Laura";
+        nombre[19]="Camila";
+        
+        
+        apellido[0]="Leguizamón";
+        apellido[1]="Cruz";
+        apellido[2]="Rodriguez";
+        apellido[3]="Castillo";
+        apellido[4]="Caicedo";
+        apellido[5]="Londoño";
+        apellido[6]="González";
+        apellido[7]="Franco";
+        apellido[8]="Arcila";
+        apellido[9]="Quiroga";
+        apellido[10]="García";
+        apellido[11]="Blanco";
+        apellido[12]="Cordero";
+        apellido[13]="Sierra";
+        apellido[14]="Forero";
+        apellido[15]="Fernandez";
+        apellido[16]="Cano";
+        apellido[17]="Oller";
+        apellido[18]="Barbieri";
+        apellido[19]="Gutierrez";
+        
+        while(num!=0){
+            int min = 0;
+            int max = apellido.length-1;
+
+        
+            int ranNom=random.nextInt(max-min+1)+min;
+            String nombreAlumno=nombre[ranNom];
+         
+            int ranApe = random.nextInt(max-min+1)+min;
+            String apellidoAlumno=apellido[ranApe];
+        
+            String nombreCompleto = nombreAlumno+" "+apellidoAlumno;
+            
+            listaNombres.add(nombreCompleto);
+            num--;
+        }
+        
+        return listaNombres;
     }
 
     /**
@@ -32,7 +104,7 @@ public class Simulador {
      * @return
      */
     public HashSet<Dni> generarListaDni() {
-
+        
     }
 
     /**
