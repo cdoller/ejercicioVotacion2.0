@@ -36,17 +36,16 @@ public class Simulador {
         Collections.shuffle((listaNombres));
         Collections.shuffle(listaApellidos);
         
-        for (String lista : listaNombres) {
+        while(nombresAlumnos.size()<cantidadAlumnos){
+            for (String lista : listaNombres) {
             nombre=lista;
             for (String apellidoAlumno : listaApellidos) {
                 if(apellido!=apellidoAlumno){
                      apellido=apellidoAlumno;
                 }
                 nombresAlumnos.add(nombre+" "+apellido);
-               
-                
             }
-        }
+        }}
         return nombresAlumnos;
     }
 
