@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.TreeSet;
 
 public class Simulador {
@@ -83,8 +84,22 @@ public class Simulador {
      * @param dnis
      * @return
      */
-    public ArrayList<Alumno> generarAlumnos(ArrayList<String> nombres, HashSet<Dni> dnis) {
-
+    public ArrayList<Alumno> generarAlumnos(ArrayList<String> nombres, HashSet<Dni> dnis){
+        Scanner leer=new Scanner(System.in);
+        System.out.println("Por favor indique cuantos alumnos desea generar: ");
+        System.out.print("--> ");
+        Integer n=leer.nextInt();
+        ArrayList<Alumno> listaAlumnos=new ArrayList<>();
+        int cont=0;
+        
+        while(cont<n){
+            for (Dni dni : dnis) {
+                listaAlumnos.add(new Alumno(nombres.get(cont), dni));
+            }
+            cont++;
+        }
+        
+        return listaAlumnos;
     }
 
     /**
@@ -93,6 +108,12 @@ public class Simulador {
      */
     public void imprimirAlumnos(ArrayList<Alumno> alumnos) {
 
+        System.out.println("Todos los alumnos dentro de la votacion: ");
+        System.out.println("");
+        for (Alumno alumno : alumnos) {
+            System.out.println(alumno.toString());
+        }
+        
     }
 
     /**
@@ -108,6 +129,7 @@ public class Simulador {
      */
     public ArrayList<Alumno> votacion(Voto voto, ArrayList<Alumno> alumnos) {
 
+        
     }
 
     /**
