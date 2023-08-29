@@ -1,7 +1,11 @@
 package Entidad;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Random;
+import java.util.Scanner;
 import java.util.TreeSet;
 
 public class Simulador {
@@ -22,7 +26,28 @@ public class Simulador {
      * @return
      */
     public ArrayList<String> generarListaNombres() {
-        return new ArrayList();
+        
+        ArrayList<String> listaNombres = new ArrayList<>(Arrays.asList("Manolo","Nikita","Takeshi","Vladimir","Martha","Aristoteles","Hypatia","Deborah","Kim"));
+        ArrayList<String> listaApellidos = new ArrayList<>(Arrays.asList("Putin","Nakamura","Jimenez","Mussolini","Khan","Hotpants","Coldpants","Solis","Zheng"));
+        ArrayList<String> nombresAlumnos=new ArrayList<>();
+        String nombre="";
+        String apellido="";
+        
+        
+        Collections.shuffle((listaNombres));
+        Collections.shuffle(listaApellidos);
+        
+        while(nombresAlumnos.size()<cantidadAlumnos){
+            for (String lista : listaNombres) {
+            nombre=lista;
+            for (String apellidoAlumno : listaApellidos) {
+                if(apellido!=apellidoAlumno){
+                     apellido=apellidoAlumno;
+                }
+                nombresAlumnos.add(nombre+" "+apellido);
+            }
+        }}
+        return nombresAlumnos;
     }
 
     /**
@@ -32,7 +57,24 @@ public class Simulador {
      * @return
      */
     public HashSet<Dni> generarListaDni() {
-
+        HashSet<Dni> dnis = new HashSet<>();
+        Random random = new Random();
+        String posiblesTiposDni = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int numerosPosiblesDni = 999_999_999;
+        int posicionRandomTipo = 0;
+        
+        String tipoSeleccionado = "";
+        int numeroDni = 0;
+        
+        while(dnis.size() != cantidadAlumnos){
+            posicionRandomTipo = random.nextInt(posiblesTiposDni.length());
+            tipoSeleccionado = posiblesTiposDni.substring(posicionRandomTipo, posicionRandomTipo+1);
+            numeroDni = random.nextInt(numerosPosiblesDni)+1;
+            
+            dnis.add(new Dni(numeroDni, tipoSeleccionado));
+        }
+        
+        return dnis;
     }
 
     /**
@@ -42,8 +84,22 @@ public class Simulador {
      * @param dnis
      * @return
      */
-    public ArrayList<Alumno> generarAlumnos(ArrayList<String> nombres, HashSet<Dni> dnis) {
-
+    public ArrayList<Alumno> generarAlumnos(ArrayList<String> nombres, HashSet<Dni> dnis){
+        Scanner leer=new Scanner(System.in);
+        System.out.println("Por favor indique cuantos alumnos desea generar: ");
+        System.out.print("--> ");
+        Integer n=leer.nextInt();
+        ArrayList<Alumno> listaAlumnos=new ArrayList<>();
+        int cont=0;
+        
+        while(cont<n){
+            for (Dni dni : dnis) {
+                listaAlumnos.add(new Alumno(nombres.get(cont), dni));
+            }
+            cont++;
+        }
+        
+        return listaAlumnos;
     }
 
     /**
@@ -52,6 +108,12 @@ public class Simulador {
      */
     public void imprimirAlumnos(ArrayList<Alumno> alumnos) {
 
+        System.out.println("Todos los alumnos dentro de la votacion: ");
+        System.out.println("");
+        for (Alumno alumno : alumnos) {
+            System.out.println(alumno.toString());
+        }
+        
     }
 
     /**
@@ -67,6 +129,7 @@ public class Simulador {
      */
     public ArrayList<Alumno> votacion(Voto voto, ArrayList<Alumno> alumnos) {
 
+        
     }
 
     /**
